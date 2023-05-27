@@ -36,6 +36,7 @@
       height: 80vh;
       overflow-y: auto;
       padding-left: 3px;
+      padding-right: 5px;
 
       &::-webkit-scrollbar {
         width: 8px;
@@ -43,7 +44,7 @@
       }
       &::-webkit-scrollbar-thumb {
         border-radius: 10px;
-        background-color: #515151;
+        background-color: #016c69;
         outline: none;
       }
 

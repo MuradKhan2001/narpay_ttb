@@ -325,8 +325,8 @@ function Home() {
                     <div className="teachers-container">
                         <div className="teachers-box">
                             {
-                                service.filter((item, index) => index < 4).map((item) => {
-                                    return <div data-aos="zoom-in" className="teachers-photo">
+                                service.filter((item, index) => index < 4).map((item,index) => {
+                                    return <div key={index} data-aos="zoom-in" className="teachers-photo">
                                         <div className="img-box">
                                             <img src={item.image} alt=""/>
                                         </div>

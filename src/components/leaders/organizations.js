@@ -32,8 +32,8 @@ function Organizations() {
         Aos.init({duration: 1000});
     }, []);
 
-    const displayWorks = doctors.filter((item)=> item.user_type === "Doctor").slice(pagesVisited, pagesVisited + worksPage).map((item) => {
-        return <div data-aos="zoom-in-up" className="leaders-photo">
+    const displayWorks = doctors.filter((item)=> item.user_type === "Doctor").slice(pagesVisited, pagesVisited + worksPage).map((item, index) => {
+        return <div key={index} data-aos="zoom-in-up" className="leaders-photo">
             <img src={item.image} alt=""/>
             <div className="name-org">
                 <div className="name">

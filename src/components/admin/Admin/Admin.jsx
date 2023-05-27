@@ -1,92 +1,68 @@
-import {useState, useEffect, useContext} from "react";
 import {useNavigate, Route, Routes, NavLink} from "react-router-dom";
 import "./admin.scss"
 import {adminPageRoutes} from "../../routes/Routes";
-import axios from "axios";
-import {MyContext} from "../../app/App";
 
 
 const Admin = () => {
-    let value = useContext(MyContext);
     const navigate = useNavigate();
 
     const SiteMenus = [
         {
-            name: "Dashboard",
+            name: "Bosh sahifa",
             url: "/",
-            img: "../images/admin/home.png"
+            img: "../images/admin/dashboard.png"
         },
         {
             name: "Biz haqimizda",
             url: "/aboutus",
-            img: "../images/admin/about.png"
+            img: "../images/admin/information-button.png"
         },
         {
             name: "Aloqa",
             url: "/contacta",
-            img: "../images/admin/contact-us.png"
+            img: "../images/admin/contact.png"
         },
         {
             name: "Yangilikar",
             url: "/newsa",
-            img: "../images/admin/news.png"
+            img: "../images/admin/newss.png"
         },
         {
             name: "Bo'limlar",
             url: "/servicea",
-            img: "../images/admin/customer.png"
+            img: "../images/admin/diagram.png"
         },
         {
             name: "Xabarlar",
             url: "/message",
-            img: "../images/admin/message.png"
+            img: "../images/admin/email.png"
         },
         {
             name: "Xodimlarni qo'shish",
             url: "/add-employee",
-            img: "../images/admin/message.png"
+            img: "../images/admin/doctor.png"
         },
         {
             name: "QVP",
             url: "/add-qvp",
-            img: "../images/admin/message.png"
+            img: "../images/admin/hospital.png"
         },
         {
             name: "Bo'sh ish o'rni ",
             url: "/add-vacancy",
-            img: "../images/admin/message.png"
+            img: "../images/admin/vacancy.png"
         },
         {
             name: "Statistika qo'shish",
             url: "/add-statistic",
-            img: "../images/admin/message.png"
+            img: "../images/admin/statistical.png"
         },
         {
             name: "Xavfsizlik",
             url: "/safety",
-            img: "../images/admin/lock.png"
+            img: "../images/admin/shield.png"
         },
     ];
-
-    // useEffect(() => {
-    //     axios.get(`${value.url}dashboard/home/`, {
-    //         headers: {
-    //             "Authorization": `Token ${localStorage.getItem("token")}`
-    //         }
-    //     }).then((response) => {
-    //         setStatisticsCount(response.data)
-    //         setCountPrice(response.data.balance)
-    //     }).catch((error) => {
-    //         if (error.response.statusText == "Unauthorized") {
-    //             window.location.pathname = "/";
-    //             localStorage.removeItem("token");
-    //         }
-    //     });
-    //
-    //     if (sessionStorage.getItem("menu")) {
-    //     } else sessionStorage.setItem("menu", "1");
-    //
-    // }, []);
 
 
     return <div className="admin-home">
