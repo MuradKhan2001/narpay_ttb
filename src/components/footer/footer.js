@@ -58,8 +58,12 @@ function Footer(props) {
                                         </div>
                                     </div>
                                     <div className="bottom">
-                                        {item.phone1} <br/>
-                                        {item.phone2}
+                                        <a href={`tel:${item.phone1}`}>
+                                            {item.phone1} 
+                                        </a>
+                                        <a  href={`tel:${item.phone2}`}>
+                                            {item.phone2} 
+                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -94,7 +98,9 @@ function Footer(props) {
 
                                 </div>
                                 <div className="web-site">
-                                    <img src="./images/Vector (3).png" alt=""/>narpay_ttb.uz
+                                    <a href="http://narpay-ttb.uz/" target='_blank'>
+                                        <img src="./images/Vector (3).png" alt=""/>narpay-ttb.uz
+                                    </a>
                                 </div>
                                 <div className="social-media">
                                     <div className="media-text">

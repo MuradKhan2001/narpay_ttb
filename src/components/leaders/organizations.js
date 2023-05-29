@@ -54,7 +54,7 @@ function Organizations() {
             </div>
         </div>
     });
-    const pageCount = Math.ceil(doctors.length / worksPage);
+    const pageCount = Math.ceil(doctors.filter((item)=> item.user_type === "Doctor").length / worksPage);
     const changePage = ({selected}) => {
         setPageNumber(selected)
     };

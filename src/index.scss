@@ -1063,6 +1063,12 @@ body {
             font-size: 18px;
             line-height: 24px;
             color: white;
+            a{
+              display: block;
+              text-decoration:none;
+              color: white;
+              margin-top: 5px !important;
+            }
           }
         }
       }
@@ -1114,7 +1120,10 @@ body {
           line-height: 24px;
           color: white;
           cursor: pointer;
-
+          a{
+            text-decoration: none;
+            color: white;
+          }
           img {
             margin-right: 10px;
           }
@@ -1148,6 +1157,7 @@ body {
       border: 1px solid #FAFAFA;
       margin: 0 auto;
       opacity: 0.4;
+
     }
   }
 
@@ -1732,6 +1742,10 @@ body {
             color: #01B3B0;
             margin-top: 10px;
             font-weight: bold;
+            a{
+              text-decoration: none;
+              color: #016c69;
+            }
           }
         }
 

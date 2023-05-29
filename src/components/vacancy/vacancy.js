@@ -55,7 +55,9 @@ function Vacancy() {
                     <div className="text">{item.salary}</div>
 
                     <div className="contact">
-                        {t('contact')} {item.contact}
+                        <a href={`tel:${item.contact}`}>
+                            {t('contact')}: {item.contact}
+                        </a>
                     </div>
                 </div>
             </div>
