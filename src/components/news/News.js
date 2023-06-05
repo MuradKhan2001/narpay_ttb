@@ -8,7 +8,7 @@ import axios from "axios";
 import Aos from "aos";
 import {MyContext} from "../app/App";
 
-function News(props) {
+function News() {
     let value = useContext(MyContext);
     const {t} = useTranslation();
     const [pageNumber, setPageNumber] = useState(0);
@@ -23,7 +23,7 @@ function News(props) {
                 "Accept-Language": localStorage.getItem('language') ? localStorage.getItem('language') : "uz"
             }
         }).then((response) => {
-            setNews(response.data);
+            setNews(response.data.reverse());
         }).catch(() => {
         });
 
@@ -34,12 +34,16 @@ function News(props) {
         return <div key={index} className="Events-photo">
             <div className="news-box">
                 <div className="img-box">
-                    <img src={item.image} alt=""/>
+                    {
+                        item.image ?
+                            <img src={item.image} alt=""/> :
+                            <video src={item.video} controls></video>
+                    }
                     <div className="name-box">
                         <div className="name-Events">
                             <div className="content1">
                                 <div className="events-name">
-                                    {item.name}
+                                    {item.title}
                                 </div>
                                 <div className="description">
                                     {item.description}

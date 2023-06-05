@@ -30,7 +30,11 @@ function AboutNews() {
                 {
                     news ?  <div className="employee-box">
                         <div className="employee-photo">
-                            <img src={news.image} alt=""/>
+                            {
+                                news.image ?
+                                    <img src={news.image} alt=""/> :
+                                    <video src={news.video} controls></video>
+                            }
                         </div>
                         <div className="employee-text">
                             <div className="employee-content">

@@ -20,6 +20,7 @@ function Home() {
     const [doctors, setDoctors] = useState([]);
     const [service, setService] = useState([]);
     const [news, setNews] = useState([]);
+    const [gallery, setGallery] = useState([]);
     const [contact, setContact] = useState([]);
     const [statistics, setStatistics] = useState([
         {
@@ -109,7 +110,6 @@ function Home() {
             }
         }).then((response) => {
             setAboutus(response.data);
-        }).catch(() => {
         });
 
         axios.get(`${value.url}doctor/`, {
@@ -118,7 +118,6 @@ function Home() {
             }
         }).then((response) => {
             setDoctors(response.data);
-        }).catch(() => {
         });
 
         axios.get(`${value.url}service/`, {
@@ -127,7 +126,6 @@ function Home() {
             }
         }).then((response) => {
             setService(response.data);
-        }).catch(() => {
         });
 
         axios.get(`${value.url}home/`, {
@@ -141,17 +139,15 @@ function Home() {
                 patients: response.data[0].patients
             };
             setStatistics(newList)
-        }).catch(() => {
-        });
+        })
 
         axios.get(`${value.url}news/`, {
             headers: {
                 "Accept-Language": localStorage.getItem('language') ? localStorage.getItem('language') : "uz"
             }
         }).then((response) => {
-            setNews(response.data)
-        }).catch(() => {
-        });
+            setNews(response.data.reverse());
+        })
 
         axios.get(`${value.url}contact/`, {
             headers: {
@@ -159,8 +155,11 @@ function Home() {
             }
         }).then((response) => {
             setContact(response.data);
-        }).catch(() => {
         });
+
+        axios.get(`${value.url}galary/`).then((response) => {
+            setGallery(response.data);
+        })
 
     }, []);
 
@@ -171,11 +170,14 @@ function Home() {
 
                 <div className="home-box">
                     <div className="left-site">
-                        <div className="title-home" style={i18next.language === "ru"? {fontSize:52}: {fontSize:67}}>
-                            <span style={i18next.language === "ru"? {fontSize:20}: {fontSize:36}}>{t('textTop')}</span> <br/>
+                        <div className="title-home" style={i18next.language === "ru" ? {fontSize: 52} : {fontSize: 67}}>
+                            <span
+                                style={i18next.language === "ru" ? {fontSize: 20} : {fontSize: 36}}>{t('textTop')}</span>
+                            <br/>
                             {t('textBottom')}
                         </div>
-                        <div style={i18next.language === "ru"? {fontSize:20}: {fontSize:24}} className="description-home">
+                        <div style={i18next.language === "ru" ? {fontSize: 20} : {fontSize: 24}}
+                             className="description-home">
                             {t('textDes')}
                         </div>
                         <div className="line-home"></div>
@@ -200,22 +202,11 @@ function Home() {
 
                                 <Slider {...settingsForImage} >
 
-                                    <div data-aos="flip-right" className="click-slide-box">
-                                        <img src="./images/home4.jfif" alt=""/>
-                                    </div>
-
-                                    <div data-aos="flip-right" className="click-slide-box">
-                                        <img src="./images/home3.jpg" alt=""/>
-                                    </div>
-
-                                    <div data-aos="flip-right" className="click-slide-box">
-                                        <img src="./images/home1.jpg" alt=""/>
-                                    </div>
-
-                                    <div data-aos="flip-right" className="click-slide-box">
-                                        <img src="./images/home2.jpg" alt=""/>
-                                    </div>
-
+                                    {gallery.map((item, index) => {
+                                        return <div key={index} data-aos="flip-right" className="click-slide-box">
+                                            <img src={item.image} alt=""/>
+                                        </div>
+                                    })}
 
                                 </Slider>
 
@@ -292,6 +283,9 @@ function Home() {
                                             <div className="name-org">
                                                 <div className="name">
                                                     {item.name}
+                                                    {/*{item.name.split(" ").slice(0,1)}  &ensp;*/}
+                                                    {/*{item.name.split(" ").slice(1,2)}  &ensp;*/}
+                                                    {/*{item.name.split(" ")[item.name.split(" ").length-1].slice(0,1)}*/}
                                                 </div>
                                                 <div className="position">
                                                     {item.position}
@@ -325,7 +319,7 @@ function Home() {
                     <div className="teachers-container">
                         <div className="teachers-box">
                             {
-                                service.filter((item, index) => index < 4).map((item,index) => {
+                                service.filter((item, index) => index < 4).map((item, index) => {
                                     return <div key={index} data-aos="zoom-in" className="teachers-photo">
                                         <div className="img-box">
                                             <img src={item.image} alt=""/>
@@ -367,11 +361,15 @@ function Home() {
                     <div className="Events-container">
                         <div className="Events-box">
                             {
-                                news.filter((item, index) => index < 3).map((item, index) => {
+                              news.reverse().filter((item, index) => index < 3).map((item, index) => {
                                     return <div key={index} data-aos="zoom-in-up" className="Events-photo">
                                         <div className="news-box">
                                             <div className="img-box">
-                                                <img src={item.image} alt=""/>
+                                                {
+                                                    item.image ?
+                                                        <img src={item.image} alt=""/> :
+                                                        <video src={item.video} controls></video>
+                                                }
                                                 <div className="name-box">
                                                     <div className="name-Events">
                                                         <div className="content1">

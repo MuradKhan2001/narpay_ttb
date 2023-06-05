@@ -28,6 +28,11 @@ const Admin = () => {
             img: "../images/admin/newss.png"
         },
         {
+            name: "Rasmlar",
+            url: "/moments",
+            img: "../images/admin/galary.png"
+        },
+        {
             name: "Bo'limlar",
             url: "/servicea",
             img: "../images/admin/diagram.png"

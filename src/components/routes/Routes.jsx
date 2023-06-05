@@ -22,6 +22,7 @@ import AddEmployee from "../admin/Site Admin/add-employee/AddEmployee";
 import Addqvp from "../admin/Site Admin/add-qvp/Qvp";
 import AddVacancy from "../admin/Site Admin/add-vacancy/Addvacancy";
 import Statistic from "../admin/Site Admin/statistic/statisrtic";
+import Moments from "../admin/Site Admin/moments/Moments";
 
 export const publicRoutes = [
     {
@@ -121,6 +122,10 @@ export const adminPageRoutes = [
     {
         path:"/add-statistic",
         element: <Statistic/>
+    },
+    {
+        path:"/moments",
+        element: <Moments/>
     },
     {
         path:"/safety",

@@ -1,5 +1,5 @@
 import "./style.scss"
-import {useContext, useEffect, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import {MyContext} from "../../../app/App";
 import axios from "axios";
 
@@ -10,12 +10,8 @@ const NewsA = () => {
     const [desRu, setDesRu] = useState("");
     const [TitleUz, setTitleUz] = useState("");
     const [TitleRu, setTitleRu] = useState("");
-
-    const getImage = (e) => {
-        setImage(e.target.files[0])
-    };
-
     const [image, setImage] = useState(null);
+    const [video, setVideo] = useState(null);
 
     const getList = (lng) => {
         axios.get(`${value.url}news/`, {
@@ -38,7 +34,7 @@ const NewsA = () => {
     }, []);
 
     const pushInfo = () => {
-        if (desUz.trim().length > 0 && desRu.trim().length > 0 && image && TitleUz.trim().length > 0
+        if (desUz.trim().length > 0 && desRu.trim().length > 0 && TitleUz.trim().length > 0
             && TitleRu.trim().length > 0) {
 
             let Post = new FormData();
@@ -55,7 +51,11 @@ const NewsA = () => {
             };
 
             Post.append("translations", JSON.stringify(translations));
-            Post.append("image", image);
+
+            if (image) Post.append("image", image);
+
+            if (video) Post.append("video", video);
+
 
             axios.post(`${value.url}news/`, Post, {
                 headers: {
@@ -70,6 +70,7 @@ const NewsA = () => {
                 document.getElementById('TitleUz').value = "";
                 document.getElementById('TitleRu').value = "";
                 document.getElementById('photo').value = "";
+                document.getElementById('video').value = "";
 
             }).catch(() => {
 
@@ -120,7 +121,10 @@ const NewsA = () => {
                               placeholder="Для информации"></textarea>
 
                     <label htmlFor="photo">Rasm:</label>
-                    <input onChange={getImage} id="photo" type="file"/>
+                    <input onChange={(e) => setImage(e.target.files[0])} id="photo" type="file"/>
+
+                    <label htmlFor="video">Video:</label>
+                    <input onChange={(e) => setVideo(e.target.files[0])} id="video" type="file"/>
 
                     <div onClick={pushInfo} className="add-button">Qo'shish</div>
                 </div>
@@ -131,7 +135,11 @@ const NewsA = () => {
                     MainList.map((item, index) => {
                         return <div key={index} className="cards">
                             <div className="for-img">
-                                <img src={item.image} alt=""/>
+                                {
+                                    item.image ?
+                                        <img src={item.image} alt=""/> :
+                                        <video src={item.video} controls></video>
+                                }
                             </div>
 
                             <div className="for-text">

@@ -54,8 +54,8 @@ const Login = () => {
                 }} src="../images/logo2.png" alt=""/>
             </div>
             <div className="inputs">
-                <input value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="Username" type="text"/>
-                <input value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Parol"
+                <input name="login" value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="Username" type="text"/>
+                <input name="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Parol"
                        type="password"/>
             </div>
             <div onClick={HandleLogin} onKeyUp={() => console.log("enter")} className="login-btn">
