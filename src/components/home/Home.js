@@ -65,6 +65,40 @@ function Home() {
         ]
     };
 
+    const settingsForNews2 = {
+        dots: false,
+        infinite: true,
+        speed: 1000,
+        autoplay: true,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        initialSlide: 1,
+        responsive: [
+            {
+                breakpoint: 1024,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                }
+            },
+            {
+                breakpoint: 600,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                    initialSlide: 1
+                }
+            },
+            {
+                breakpoint: 480,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1
+                }
+            }
+        ]
+    };
+
     const settingsForImage = {
         dots: true,
         infinite: true,
@@ -365,11 +399,26 @@ function Home() {
                                     return <div key={index} data-aos="zoom-in-up" className="Events-photo">
                                         <div className="news-box">
                                             <div className="img-box">
+
                                                 {
-                                                    item.image ?
-                                                        <img src={item.image} alt=""/> :
-                                                        <video src={item.video} controls></video>
+                                                    item.image_set ?
+                                                        <Slider {...settingsForNews2} >
+                                                            {
+                                                                item.image_set.map((item, index) => {
+                                                                    return <div key={index}
+                                                                                className="click-slide-box">
+                                                                        <img key={index} src={item.image} alt=""/>
+                                                                    </div>
+                                                                })
+                                                            }
+                                                        </Slider> : ""
                                                 }
+
+
+                                                {
+                                                    item.video ? <video src={item.video} controls></video> : ""
+                                                }
+
                                                 <div className="name-box">
                                                     <div className="name-Events">
                                                         <div className="content1">

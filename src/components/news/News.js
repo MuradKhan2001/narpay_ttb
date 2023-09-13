@@ -7,6 +7,7 @@ import Footer from "../footer/footer";
 import axios from "axios";
 import Aos from "aos";
 import {MyContext} from "../app/App";
+import Slider from "react-slick/lib";
 
 function News() {
     let value = useContext(MyContext);
@@ -16,6 +17,39 @@ function News() {
     const worksPage = 6;
     const pagesVisited = pageNumber * worksPage;
     const navigate = useNavigate();
+    const settingsForNews2 = {
+        dots: false,
+        infinite: true,
+        speed: 1000,
+        autoplay: true,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        initialSlide: 1,
+        responsive: [
+            {
+                breakpoint: 1024,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                }
+            },
+            {
+                breakpoint: 600,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                    initialSlide: 1
+                }
+            },
+            {
+                breakpoint: 480,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1
+                }
+            }
+        ]
+    };
 
     useEffect(() => {
         axios.get(`${value.url}news/`, {
@@ -35,10 +69,24 @@ function News() {
             <div className="news-box">
                 <div className="img-box">
                     {
-                        item.image ?
-                            <img src={item.image} alt=""/> :
-                            <video src={item.video} controls></video>
+                        item.image_set ?
+                            <Slider {...settingsForNews2} >
+                                {
+                                    item.image_set.map((item, index) => {
+                                        return <div key={index}
+                                                    className="click-slide-box">
+                                            <img key={index} src={item.image} alt=""/>
+                                        </div>
+                                    })
+                                }
+                            </Slider> : ""
                     }
+
+
+                    {
+                        item.video ? <video src={item.video} controls></video> : ""
+                    }
+
                     <div className="name-box">
                         <div className="name-Events">
                             <div className="content1">
@@ -65,7 +113,6 @@ function News() {
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     });

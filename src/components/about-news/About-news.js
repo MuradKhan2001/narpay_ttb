@@ -4,6 +4,7 @@ import Footer from "../footer/footer";
 import axios from "axios";
 import Aos from "aos";
 import {MyContext} from "../app/App";
+import Slider from "react-slick/lib";
 
 function AboutNews() {
     let value = useContext(MyContext);
@@ -22,7 +23,39 @@ function AboutNews() {
         Aos.init({duration: 1000});
     }, []);
 
-
+    const settingsForNews2 = {
+        dots: false,
+        infinite: true,
+        speed: 1000,
+        autoplay: true,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        initialSlide: 1,
+        responsive: [
+            {
+                breakpoint: 1024,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                }
+            },
+            {
+                breakpoint: 600,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                    initialSlide: 1
+                }
+            },
+            {
+                breakpoint: 480,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1
+                }
+            }
+        ]
+    };
     return (
         <>
             <div className="news-container">
@@ -31,9 +64,22 @@ function AboutNews() {
                     news ?  <div className="employee-box">
                         <div className="employee-photo">
                             {
-                                news.image ?
-                                    <img src={news.image} alt=""/> :
-                                    <video src={news.video} controls></video>
+                                news.image_set ?
+                                    <Slider {...settingsForNews2} >
+                                        {
+                                            news.image_set.map((item, index) => {
+                                                return <div key={index}
+                                                            className="click-slide-box">
+                                                    <img key={index} src={item.image} alt=""/>
+                                                </div>
+                                            })
+                                        }
+                                    </Slider> : ""
+                            }
+
+
+                            {
+                                news.video ? <video src={news.video} controls></video> : ""
                             }
                         </div>
                         <div className="employee-text">

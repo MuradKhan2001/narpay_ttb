@@ -2,6 +2,7 @@ import "./style.scss"
 import React, {useContext, useEffect, useState} from "react";
 import {MyContext} from "../../../app/App";
 import axios from "axios";
+import Slider from "react-slick/lib";
 
 const NewsA = () => {
     let value = useContext(MyContext);
@@ -52,7 +53,12 @@ const NewsA = () => {
 
             Post.append("translations", JSON.stringify(translations));
 
-            if (image) Post.append("image", image);
+
+            if (image) {
+                for (let i = 0; i < image.length; i++) {
+                    Post.append("images", image[i]);
+                }
+            }
 
             if (video) Post.append("video", video);
 
@@ -91,6 +97,40 @@ const NewsA = () => {
         });
     };
 
+    const settingsForNews = {
+        dots: false,
+        infinite: true,
+        speed: 1000,
+        autoplay: true,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        initialSlide: 1,
+        responsive: [
+            {
+                breakpoint: 1024,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                }
+            },
+            {
+                breakpoint: 600,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                    initialSlide: 2
+                }
+            },
+            {
+                breakpoint: 480,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1
+                }
+            }
+        ]
+    };
+
 
     return <div className="news-admin-box">
         <div className="header-side">
@@ -121,7 +161,10 @@ const NewsA = () => {
                               placeholder="Для информации"></textarea>
 
                     <label htmlFor="photo">Rasm:</label>
-                    <input onChange={(e) => setImage(e.target.files[0])} id="photo" type="file"/>
+                    <input onChange={(e) => {
+                        console.log(e.target.files)
+                        setImage(e.target.files)
+                    }} id="photo" type="file" multiple/>
 
                     <label htmlFor="video">Video:</label>
                     <input onChange={(e) => setVideo(e.target.files[0])} id="video" type="file"/>
@@ -131,14 +174,34 @@ const NewsA = () => {
             </div>
 
             <div className="right">
+
                 {
                     MainList.map((item, index) => {
                         return <div key={index} className="cards">
                             <div className="for-img">
+
                                 {
-                                    item.image ?
-                                        <img src={item.image} alt=""/> :
-                                        <video src={item.video} controls></video>
+                                    item.image_set ?
+                                        <Slider {...settingsForNews} >
+                                            {
+                                                item.image_set.map((item, index) => {
+                                                    return <div key={index}
+                                                                className="click-slide-box">
+                                                        <img key={index} src={item.image} alt=""/>
+                                                        <div className="leader-box">
+
+                                                        </div>
+
+
+                                                    </div>
+                                                })
+                                            }
+                                        </Slider> : ""
+                                }
+
+
+                                {
+                                    item.video ? <video src={item.video} controls></video> : ""
                                 }
                             </div>
 

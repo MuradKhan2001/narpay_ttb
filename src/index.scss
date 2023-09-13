@@ -785,14 +785,51 @@ body {
             width: 100%;
 
             .img-box {
-              width: 100%;
+              margin: 0 auto;
+              width: 88%;
               height: 60%;
               position: relative;
+              padding: 2px;
+              .slick-prev {
+                width: 30px;
+                height: 30px;
+                left: -35px;
+                border-radius: 50%;
+                background-image: url("../public/images/prev-slide.png");
+                background-size: 60%;
+                background-position: center;
+                background-repeat: no-repeat;
+                border: 0.1px solid #01B3B0;
 
-              img {
-                object-fit: cover;
+                &::before {
+                  display: none;
+                }
+              }
+
+              .slick-next {
+                width: 30px;
+                height: 30px;
+                right: -35px;
+                border-radius: 50%;
+                background-image: url("../public/images/next-slide.png");
+                background-size: 60%;
+                background-position: center;
+                background-repeat: no-repeat;
+                border: 0.1px solid #01B3B0;
+
+                &::before {
+                  display: none;
+                }
+              }
+
+              .click-slide-box {
+                padding: 2px;
                 width: 100%;
-                height: 100%;
+                img{
+                  object-fit: cover;
+                  width: 360px;
+                  height: 220px;
+                }
               }
 
               video {
@@ -809,9 +846,9 @@ body {
                   border-radius: 20px;
                   position: absolute;
                   bottom: -160px;
-                  left: 33px;
+                  left: 18px;
                   transition: 0.4s;
-                  width: 80%;
+                  width: 90%;
                   height: 80%;
                   background-color: white;
                   overflow: hidden;
@@ -872,7 +909,7 @@ body {
 
                     .events-name {
                       font-weight: 700;
-                      font-size: 18px;
+                      font-size: 16px;
                       line-height: 24px;
                       color: #01B3B0;
                       text-align: center;
@@ -884,7 +921,8 @@ body {
                       white-space: pre-line;
                       text-overflow: ellipsis;
                       width: 100%;
-                      height: 70%;
+                      height: 45%;
+                      text-align: center;
                     }
 
                     .events-date {
@@ -1558,14 +1596,51 @@ body {
           width: 100%;
 
           .img-box {
-            width: 100%;
+            width: 88%;
             height: 60%;
             position: relative;
+            margin: 0 auto;
 
-            img {
-              object-fit: cover;
+            .slick-prev {
+              width: 30px;
+              height: 30px;
+              left: -35px;
+              border-radius: 50%;
+              background-image: url("../public/images/prev-slide.png");
+              background-size: 60%;
+              background-position: center;
+              background-repeat: no-repeat;
+              border: 0.1px solid #01B3B0;
+
+              &::before {
+                display: none;
+              }
+            }
+
+            .slick-next {
+              width: 30px;
+              height: 30px;
+              right: -35px;
+              border-radius: 50%;
+              background-image: url("../public/images/next-slide.png");
+              background-size: 60%;
+              background-position: center;
+              background-repeat: no-repeat;
+              border: 0.1px solid #01B3B0;
+
+              &::before {
+                display: none;
+              }
+            }
+
+            .click-slide-box {
+              padding: 2px;
               width: 100%;
-              height: 100%;
+              img{
+                object-fit: cover;
+                width: 360px;
+                height: 220px;
+              }
             }
 
             video {
@@ -1582,9 +1657,9 @@ body {
                 border-radius: 20px;
                 position: absolute;
                 bottom: -160px;
-                left: 33px;
+                left: 20px;
                 transition: 0.4s;
-                width: 80%;
+                width: 90%;
                 height: 80%;
                 background-color: white;
                 overflow: hidden;
@@ -1645,7 +1720,7 @@ body {
 
                   .events-name {
                     font-weight: 700;
-                    font-size: 18px;
+                    font-size: 16px;
                     line-height: 24px;
                     color: #01B3B0;
                     text-align: center;
@@ -1657,7 +1732,7 @@ body {
                     white-space: pre-line;
                     text-overflow: ellipsis;
                     width: 100%;
-                    height: 68%;
+                    height: 40%;
                     font-size: 14px;
                   }
 
@@ -1946,14 +2021,52 @@ body {
 
 
     .employee-photo {
-      width: 50%;
+      width: 40%;
       height: 100%;
+      margin: 0 auto;
+      .slick-prev {
+        width: 30px;
+        height: 30px;
+        left: -35px;
+        border-radius: 50%;
+        background-image: url("../public/images/prev-slide.png");
+        background-size: 60%;
+        background-position: center;
+        background-repeat: no-repeat;
+        border: 0.1px solid #01B3B0;
 
-      img {
-        object-fit: cover;
-        width: 100%;
-        height: 100%;
+        &::before {
+          display: none;
+        }
       }
+
+      .slick-next {
+        width: 30px;
+        height: 30px;
+        right: -35px;
+        border-radius: 50%;
+        background-image: url("../public/images/next-slide.png");
+        background-size: 60%;
+        background-position: center;
+        background-repeat: no-repeat;
+        border: 0.1px solid #01B3B0;
+
+        &::before {
+          display: none;
+        }
+      }
+
+      .click-slide-box {
+        padding: 2px;
+        width: 100%;
+        height: 350px;
+        img{
+          object-fit: cover;
+          width: 100%;
+          height: 100%;
+        }
+      }
+
       video{
         width: 100%;
         height: 100%;
